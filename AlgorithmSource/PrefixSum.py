@@ -1,6 +1,3 @@
-from sys import prefix
-
-
 n = 5
 data = [10, 20, 30, 40, 50]
 
