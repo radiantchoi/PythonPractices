@@ -11,13 +11,6 @@
 
 
 
-
-
-
-
-
-
-
 # def solution(n, weak, dist):
 #     store = [0] * (3 * n) # 가게 지도
 #     result = 0 # 쓴 사람 수
