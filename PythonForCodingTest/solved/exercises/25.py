@@ -7,6 +7,8 @@
 # 클리어한 사람까지 카운팅할 필요는 없고, 지금 스테이지에 있는 인원 / 지금까지의 총 인원 하면 실패율이 나온다.
 # 이 스테이지에 있지 않으면서 지금까지의 총 인원에 포함된다는 것은, 이 스테이지를 깼다는 거니까.
 
+# 2회차 성공
+
 # 1회차의 실패한 솔루션
 def solutionfalied(N, stages):
     failrate = {}
@@ -36,6 +38,31 @@ def solutionfalied(N, stages):
         else:
             failrate[i] = (r - c) / r
         
+    result = [x for x in range(1, N+1)]
+    result.sort(key = lambda x: (-failrate[x], x))
+    return result
+
+# 2회차
+def solution(N, stages):
+    failed = [0] * (N+1)
+    gross = 0
+
+    for user in stages:
+        if user > N:
+            gross += 1
+        else:
+            failed[user] += 1
+    
+    failrate = [0] * (N+1)
+
+    for i in range(N, 0, -1):
+        gross += failed[i]
+
+        if gross == 0:
+            continue
+
+        failrate[i] = failed[i] / gross
+    
     result = [x for x in range(1, N+1)]
     result.sort(key = lambda x: (-failrate[x], x))
     return result
